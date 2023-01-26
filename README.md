@@ -1,2 +1,2 @@
-# leetcode
+# coding
 leetcode codebase
