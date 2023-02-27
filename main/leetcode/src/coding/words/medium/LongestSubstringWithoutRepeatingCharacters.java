@@ -29,8 +29,13 @@ public class LongestSubstringWithoutRepeatingCharacters {
         assert length4 == 1;
 
         int length5 = obj.lengthOfLongestSubstring("dvdf");
-        System.out.println(" " + length5);
+        System.out.println(" dvdf --> " + length5);
         assert length5 == 3;
+
+        int length6 = obj.lengthOfLongestSubstring("asjrgapa");
+        System.out.println(" asjrgapa --> " + length6);
+        assert length6 == 6;
+
 
     }
 
@@ -38,14 +43,17 @@ public class LongestSubstringWithoutRepeatingCharacters {
         int finalCount = 0;
         Set<Character> wordSet = new HashSet<>();
         for(int i = 0 ; i < s.length() ; i++){
-            if(wordSet.contains(s.charAt(i))){
-                finalCount = Math.max(wordSet.size(),finalCount);
-                wordSet.clear();
-                wordSet.add(s.charAt(i));
-            } else {
-                wordSet.add(s.charAt(i));
-                finalCount = Math.max(wordSet.size(),finalCount);
+            for(int j = i ; j < s.length() ; j++) {
+                if (wordSet.contains(s.charAt(j))) {
+                    finalCount = Math.max(wordSet.size(), finalCount);
+                    wordSet.clear();
+                    wordSet.add(s.charAt(j));
+                } else {
+                    wordSet.add(s.charAt(j));
+                    finalCount = Math.max(wordSet.size(), finalCount);
+                }
             }
+            wordSet.clear();
         }
         return finalCount;
     }
